@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\DevOps-Projects\\HasmukhSF\\Bicep-Deployment\\SF-WEBAPP03\\devopswebapp\\devopswebapp.csproj",
+      "projectUniqueName": "D:\\GitHubRepo\\DevOpsWebapp\\devopswebapp\\devopswebapp.csproj",
       "projectName": "devopswebapp",
-      "projectPath": "D:\\DevOps-Projects\\HasmukhSF\\Bicep-Deployment\\SF-WEBAPP03\\devopswebapp\\devopswebapp.csproj",
+      "projectPath": "D:\\GitHubRepo\\DevOpsWebapp\\devopswebapp\\devopswebapp.csproj",
       "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
-      "outputPath": "D:\\DevOps-Projects\\HasmukhSF\\Bicep-Deployment\\SF-WEBAPP03\\devopswebapp\\obj\\",
+      "outputPath": "D:\\GitHubRepo\\DevOpsWebapp\\devopswebapp\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config"

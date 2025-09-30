@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "3eAdb/ldMRU=",
+  "dgSpecHash": "XfImLCQxhjc=",
   "success": true,
-  "projectFilePath": "D:\\DevOps-Projects\\HasmukhSF\\Bicep-Deployment\\SF-WEBAPP03\\devopswebapp\\devopswebapp.csproj",
+  "projectFilePath": "D:\\GitHubRepo\\DevOpsWebapp\\devopswebapp\\devopswebapp.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
