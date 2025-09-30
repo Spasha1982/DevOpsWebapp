@@ -3,7 +3,7 @@ name: .Net Core Deploy to IIS
 on:
   push:
     branches:
-      - main
+      - Development
   workflow_dispatch:   # Manual trigger option
 
 jobs:
