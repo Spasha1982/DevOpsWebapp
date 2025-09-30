@@ -1,0 +1,42 @@
+name: Deploy to IIS
+
+on:
+  push:
+    branches:
+      - main   # Deploy when code is pushed to main
+
+jobs:
+  build-and-deploy:
+    runs-on: self-hosted   # Uses your IIS server runner
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '9.0.x' # Change to your version
+
+    - name: Restore dependencies
+      run: dotnet restore
+
+    - name: Build
+      run: dotnet build --configuration Release --no-restore
+
+    - name: Publish
+      run: dotnet publish -c Release -o ./publish
+
+    - name: Deploy to IIS folder
+      run: |
+        echo "Stopping IIS App Pool..."
+        Import-Module WebAdministration
+        Stop-WebAppPool -Name "DefaultAppPool"
+
+        echo "Copying files to IIS..."
+        Remove-Item "C:\inetpub\wwwroot\MyWebApp\*" -Recurse -Force
+        Copy-Item ".\publish\*" "C:\inetpub\wwwroot\MyNewWebsite\" -Recurse -Force
+
+        echo "Starting IIS App Pool..."
+        Start-WebAppPool -Name "DefaultAppPool"
+      shell: powershell
