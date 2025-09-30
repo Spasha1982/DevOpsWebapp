@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-  workflow_dispatch:   # allows manual trigger
+  workflow_dispatch:   # Manual trigger option
 
 jobs:
   build-and-deploy:
@@ -17,7 +17,7 @@ jobs:
     - name: Setup .NET 9
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: '9.0.x'   # updated to .NET 9
+        dotnet-version: '9.0.x'
 
     - name: Restore dependencies
       run: dotnet restore devopswebapp/devopswebapp.csproj
@@ -32,19 +32,32 @@ jobs:
       run: |
         Import-Module WebAdministration
 
-        # Graceful app unload
-        New-Item -Path "C:\inetpub\wwwroot\MyNewWebsite\app_offline.htm" -ItemType File -Force
+        $sitePath = "C:\inetpub\wwwroot\MyNewWebsite"
+        $appPool = "DefaultAppPool"
 
-        Stop-WebAppPool -Name "DefaultAppPool"
+        # Create app_offline.htm to unload the app gracefully
+        Write-Output "Adding app_offline.htm..."
+        New-Item -Path "$sitePath\app_offline.htm" -ItemType File -Force
 
-        # Clean old files
-        Remove-Item "C:\inetpub\wwwroot\MyNewWebsite\*" -Recurse -Force
+        # Stop the app pool
+        Write-Output "Stopping IIS App Pool..."
+        Stop-WebAppPool -Name $appPool
+
+        # Clean existing files safely
+        Write-Output "Cleaning old files..."
+        Get-ChildItem "$sitePath" -Recurse | Where-Object { $_.Name -ne "app_offline.htm" } | Remove-Item -Recurse -Force -ErrorAction SilentlyContinue
 
         # Copy new build
-        Copy-Item ".\publish\*" "C:\inetpub\wwwroot\MyNewWebsite\" -Recurse -Force
+        Write-Output "Copying new files..."
+        Copy-Item ".\publish\*" "$sitePath\" -Recurse -Force
 
-        Start-WebAppPool -Name "DefaultAppPool"
+        # Start the app pool
+        Write-Output "Starting IIS App Pool..."
+        Start-WebAppPool -Name $appPool
 
-        # Remove app_offline to bring site back online
-        Remove-Item "C:\inetpub\wwwroot\MyNewWebsite\app_offline.htm" -Force
+        # Remove app_offline.htm safely
+        Write-Output "Removing app_offline.htm..."
+        Remove-Item "$sitePath\app_offline.htm" -Force -ErrorAction SilentlyContinue
+
+        Write-Output "Deployment completed successfully!"
       shell: powershell
