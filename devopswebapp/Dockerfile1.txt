@@ -1,0 +1,53 @@
+# Stage 1: Build
+FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
+WORKDIR /src
+
+# Copy all project files
+COPY . ./
+
+# Restore, build, and publish
+RUN dotnet restore devopswebapp.csproj
+RUN dotnet build devopswebapp.csproj -c Release -o /app/build
+RUN dotnet publish devopswebapp.csproj -c Release -o /app/publish
+
+# Stage 2: Runtime
+FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS final
+WORKDIR /app
+COPY --from=build /app/publish .
+
+# Force ASP.NET Core to listen on port 80
+EXPOSE 80
+ENV ASPNETCORE_URLS=http://+:80
+
+ENTRYPOINT ["dotnet", "devopswebapp.dll"]
+Adding text
+
+
+
+
+
+
+
+
+# Use .NET 9 runtime as base image
+#FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS base
+#WORKDIR /app
+#EXPOSE 80
+
+# Build stage
+#FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
+#WORKDIR /src
+#COPY ["SF-WEBAPP03/devopswebapp/devopswebapp.csproj", "SF-WEBAPP03/devopswebapp/"]
+#RUN dotnet restore "SF-WEBAPP03/devopswebapp/devopswebapp.csproj"
+#COPY . .
+#WORKDIR "/src/SF-WEBAPP03/devopswebapp"
+#RUN dotnet build "devopswebapp.csproj" -c Release -o /app/build
+
+#FROM build AS publish
+#RUN dotnet publish "devopswebapp.csproj" -c Release -o /app/publish /p:UseAppHost=false
+
+# Final image
+#FROM base AS final
+#WORKDIR /app
+#COPY --from=publish /app/publish .
+#ENTRYPOINT ["dotnet", "devopswebapp.dll"]
