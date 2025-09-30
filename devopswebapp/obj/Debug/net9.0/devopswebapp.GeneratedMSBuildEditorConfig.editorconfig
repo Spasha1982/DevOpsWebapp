@@ -9,41 +9,41 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = devopswebapp
 build_property.RootNamespace = devopswebapp
-build_property.ProjectDir = D:\DevOps-Projects\HasmukhSF\Bicep-Deployment\SF-WEBAPP03\devopswebapp\
+build_property.ProjectDir = D:\GitHubRepo\DevOpsWebapp\devopswebapp\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 9.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = D:\DevOps-Projects\HasmukhSF\Bicep-Deployment\SF-WEBAPP03\devopswebapp
+build_property.MSBuildProjectDirectory = D:\GitHubRepo\DevOpsWebapp\devopswebapp
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 9.0
 build_property.EnableCodeStyleSeverity = 
 
-[D:/DevOps-Projects/HasmukhSF/Bicep-Deployment/SF-WEBAPP03/devopswebapp/Views/Home/Index.cshtml]
+[D:/GitHubRepo/DevOpsWebapp/devopswebapp/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/DevOps-Projects/HasmukhSF/Bicep-Deployment/SF-WEBAPP03/devopswebapp/Views/Home/Privacy.cshtml]
+[D:/GitHubRepo/DevOpsWebapp/devopswebapp/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/DevOps-Projects/HasmukhSF/Bicep-Deployment/SF-WEBAPP03/devopswebapp/Views/Shared/Error.cshtml]
+[D:/GitHubRepo/DevOpsWebapp/devopswebapp/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/DevOps-Projects/HasmukhSF/Bicep-Deployment/SF-WEBAPP03/devopswebapp/Views/Shared/_ValidationScriptsPartial.cshtml]
+[D:/GitHubRepo/DevOpsWebapp/devopswebapp/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/DevOps-Projects/HasmukhSF/Bicep-Deployment/SF-WEBAPP03/devopswebapp/Views/_ViewImports.cshtml]
+[D:/GitHubRepo/DevOpsWebapp/devopswebapp/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/DevOps-Projects/HasmukhSF/Bicep-Deployment/SF-WEBAPP03/devopswebapp/Views/_ViewStart.cshtml]
+[D:/GitHubRepo/DevOpsWebapp/devopswebapp/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/DevOps-Projects/HasmukhSF/Bicep-Deployment/SF-WEBAPP03/devopswebapp/Views/Shared/_Layout.cshtml]
+[D:/GitHubRepo/DevOpsWebapp/devopswebapp/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-iscl215oqp

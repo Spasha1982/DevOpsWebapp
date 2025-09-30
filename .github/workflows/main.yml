@@ -3,40 +3,48 @@ name: Deploy to IIS
 on:
   push:
     branches:
-      - main   # Deploy when code is pushed to main
+      - main
+  workflow_dispatch:   # allows manual trigger
 
 jobs:
   build-and-deploy:
-    runs-on: self-hosted   # Uses your IIS server runner
+    runs-on: self-hosted   # your IIS server runner
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Setup .NET
+    - name: Setup .NET 9
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: '9.0.x' # Change to your version
+        dotnet-version: '9.0.x'   # updated to .NET 9
 
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore devopswebapp/devopswebapp.csproj
 
     - name: Build
-      run: dotnet build --configuration Release --no-restore
+      run: dotnet build devopswebapp/devopswebapp.csproj --configuration Release --no-restore
 
     - name: Publish
-      run: dotnet publish -c Release -o ./publish
+      run: dotnet publish devopswebapp/devopswebapp.csproj -c Release -o ./publish
 
-    - name: Deploy to IIS folder
+    - name: Deploy to IIS
       run: |
-        echo "Stopping IIS App Pool..."
         Import-Module WebAdministration
+
+        # Graceful app unload
+        New-Item -Path "C:\inetpub\wwwroot\MyNewWebsite\app_offline.htm" -ItemType File -Force
+
         Stop-WebAppPool -Name "DefaultAppPool"
 
-        echo "Copying files to IIS..."
-        Remove-Item "C:\inetpub\wwwroot\MyWebApp\*" -Recurse -Force
+        # Clean old files
+        Remove-Item "C:\inetpub\wwwroot\MyNewWebsite\*" -Recurse -Force
+
+        # Copy new build
         Copy-Item ".\publish\*" "C:\inetpub\wwwroot\MyNewWebsite\" -Recurse -Force
 
-        echo "Starting IIS App Pool..."
         Start-WebAppPool -Name "DefaultAppPool"
+
+        # Remove app_offline to bring site back online
+        Remove-Item "C:\inetpub\wwwroot\MyNewWebsite\app_offline.htm" -Force
       shell: powershell
